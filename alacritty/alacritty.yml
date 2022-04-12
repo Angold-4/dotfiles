@@ -1,10 +1,10 @@
-# Window Customizations
+#Window Customizations
 window:
   dimensions:
     # columns: 360
     # lines: 100
-    columns: 200
-    lines: 60
+    columns: 196
+    lines: 58
   padding:
     x: 10
     y: 10
@@ -17,46 +17,82 @@ background_opacity: 1.0
 
 # Font configuration
 font:
-  family: "Cascadia Code"
-  size: 13.0
-  offset:
-    x: 0
-    y: 0
-  glyph_offset:
-    x: 0
-    y: 0
+  size: 15.0
+  style: Regular
+  normal:
+    family: Cascadia Code PL
 
 draw_bold_text_with_bright_colors: true
 
 
 # Colors (Nord)
-colors:
+# colors:
    # Default colors
-   primary:
-     background: '#2E3440'
-     foreground: '#D8DEE9'
+   # primary:
+   # background: '#2E3440'
+   # foreground: '#D8DEE9'
 
    # Normal colors
-   normal:
-     black:   '#3B4252'
-     red:     '#BF616A'
-     green:   '#A3BE8C'
-     yellow:  '#EBCB8B'
-     blue:    '#81A1C1'
-     magenta: '#B48EAD'
-     cyan:    '#88C0D0'
-     white:   '#E5E9F0'
+   # normal:
+   # black:   '#3B4252'
+   # red:     '#BF616A'
+   # green:   '#A3BE8C'
+   # yellow:  '#EBCB8B'
+   # blue:    '#81A1C1'
+   # magenta: '#B48EAD'
+   # cyan:    '#88C0D0'
+   # white:   '#E5E9F0'
 
    # Bright colors
-   bright:
-     black:   '#4C566A'
-     red:     '#BF616A'
-     green:   '#A3BE8C'
-     yellow:  '#EBCB8B'
-     blue:    '#81A1C1'
-     magenta: '#B48EAD'
-     cyan:    '#8FBCBB'
-     white:   '#ECEFF4'
+   # bright:
+   # black:   '#4C566A'
+   # red:     '#BF616A'
+   # green:   '#A3BE8C'
+   # yellow:  '#EBCB8B'
+   # blue:    '#81A1C1'
+   # magenta: '#B48EAD'
+   # cyan:    '#8FBCBB'
+   # white:   '#ECEFF4'
+
+# https://github.com/alacritty/alacritty/wiki/Color-schemes
+
+
+
+# Colors (Tomorrow Night)
+colors:
+  # Default colors
+  primary:
+    # background: '#1d1f21'
+    background: '#000000'
+    foreground: '#c5c8c6'
+
+  # Colors the cursor will use if `custom_cursor_colors` is true
+  cursor:
+    text: '#1d1f21'
+    cursor: '#ffffff'
+
+  # Normal colors
+  normal:
+    black:   '#1d1f21'
+    red:     '#cc6666'
+    green:   '#b5bd68'
+    yellow:  '#e6c547'
+    blue:    '#81a2be'
+    magenta: '#b294bb'
+    cyan:    '#70c0ba'
+    white:   '#373b41'
+
+  # Bright colors
+  bright:
+    black:   '#666666'
+    red:     '#ff3334'
+    green:   '#9ec400'
+    yellow:  '#f0c674'
+    blue:    '#81a2be'
+    magenta: '#b77ee0'
+    cyan:    '#54ced6'
+    white:   '#282a2e'
+
 # Colors (Tomorrow Night)
 #colors:
   # Default colors
