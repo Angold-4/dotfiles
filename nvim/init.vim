@@ -55,11 +55,8 @@ if has("autocmd")
   endif
 endif
 
-map <space> /
-
 call plug#begin('~/.vim/plugged')
 " Start
-
 
 Plug 'shaunsingh/nord.nvim'
 syntax on
@@ -72,9 +69,11 @@ let g:indent_guides_start_level = 2
 
 Plug 'vim-airline/vim-airline' "status line
 Plug 'vim-airline/vim-airline-themes'
+let g:airline_extensions = ['tabline']
 let g:airline_theme = 'solarized'  
 let g:airline_solarized_bg='dark'
 let g:airline#extensions#keymap#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#buffer_idx_format = {
        \ '0': '0 ',
@@ -95,15 +94,16 @@ nmap <leader>3 <Plug>AirlineSelectTab3
 nmap <leader>4 <Plug>AirlineSelectTab4
 nmap <leader>5 <Plug>AirlineSelectTab5
 nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>7 <Plug>AirlineSelectTab7 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
+
 " 设置切换tab的快捷键 <\> + <-> 切换到前一个 tab
 nmap <leader>- <Plug>AirlineSelectPrevTab
 " 设置切换tab的快捷键 <\> + <+> 切换到后一个 tab
 nmap <leader>+ <Plug>AirlineSelectNextTab
 " 设置切换tab的快捷键 <\> + <q> 退出当前的 tab
 nmap <leader>q :bp<cr>:bd #<cr>
+
 " 修改了一些个人不喜欢的字符
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
@@ -129,6 +129,7 @@ Plug 'mhinz/vim-startify'
 let g:startify_bookmarks = [
   \ { 'v': '~/.config/nvim/init.vim' },
   \ { 'z': '~/.zshrc'},
+  \ { 'a': '~/.config/alacritty/alacritty.yml'},
   \ ]
 
 
@@ -138,6 +139,10 @@ let g:startify_lsts = [
       \ { 'header': ['   MRU '. getcwd()], 'type': 'dir' },
       \ ]
 nmap <c-]> :Startify<cr>
+
+
+Plug 'majutsushi/tagbar'
+
 
 
 Plug 'luochen1990/rainbow'
@@ -169,7 +174,7 @@ let g:rainbow_conf = {
 Plug 'preservim/nerdtree' "file system explorer
 Plug 'Xuyuanp/nerdtree-git-plugin'
 " autocmd vimenter * NERDTree  "自动开启Nerdtree
-let g:NERDTreeWinSize = 25 "设定 NERDTree 视窗大小
+let g:NERDTreeWinSize = 20 "设定 NERDTree 视窗大小
 let NERDTreeShowBookmarks=1  " 开启Nerdtree时自动显示Bookmarks
 "打开vim时如果没有文件自动打开NERDTree
 " autocmd vimenter * if !argc()|NERDTree|endif
@@ -179,17 +184,19 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " 设置树的显示图标
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
-let NERDTreeIgnore = ['\.pyc$']  " 过滤所有.pyc文件不显示
 let g:NERDTreeShowLineNumbers=0 " 是否显示行号
 let g:NERDTreeHidden=0     "不显示隐藏文件
-let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
+let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$', '\.out$']
 
 let g:NERDTreeMapOpenSplit = 's'
 let g:NERDTreeMapOpenVSplit = 'v'
+
 ""Making it prettier
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
+
 nnoremap <c-n> :NERDTreeToggle<CR> " 开启/关闭nerdtree快捷键
+
 
 Plug 'voldikss/vim-floaterm'
 let g:floaterm_keymap_new = '<Leader>ft'
@@ -198,28 +205,29 @@ let g:floaterm_position = 'bottom'
 let g:floaterm_width = 1.0
 let g:floaterm_height = 0.4
 
-Plug 'christoomey/vim-tmux-navigator'
 
+Plug 'christoomey/vim-tmux-navigator'
 
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 nnoremap <C-p> :Files<Cr>
-let g:fzf_layout = { 'down': '40%' }
+let g:fzf_layout = { 'down': '20%' }
 
-
-Plug 'majutsushi/tagbar'
-let g:tagbar_width=30
-nnoremap <silent> <F4> :TagbarToggle<CR> " 将tagbar的开关按键设置为 F4
 
 Plug 'octol/vim-cpp-enhanced-highlight'
+
+
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 nnoremap <c-d> :CocDiagnostics<CR> 
 
+let g:coc_start_at_startup=0
+" Default disable coc to improve performance
 
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
+
 set encoding=utf-8
 
 " TextEdit might fail if hidden is not set.
@@ -230,12 +238,11 @@ set nobackup
 set nowritebackup
 
 " Give more space for displaying messages.
-set cmdheight=2
+set cmdheight=1
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
-set updatetime=300
-
+"
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
@@ -297,6 +304,8 @@ function! s:show_documentation()
     execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
+
+let g:airline#extensions#coc#enabled = 0 "airline
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -364,7 +373,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings for CoCList
 " Show all diagnostics.
