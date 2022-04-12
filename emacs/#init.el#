@@ -1,13 +1,22 @@
 (setq inhibit-startup-message t)
 
 (setq mac-option-modifier 'meta) ; set alt-key to meta
-(setq mac-escape-modifier nil) ; set esc-key to nil
 
 ;; Set up the visible bell
 (setq visible-bell t)
 
-;; Set up package.el to work with MELPA
+;; Initialize package sources
 (require 'package)
+
+(setq package-archives '(("org" . "https://orgmode.org/elpa/")
+			 ("melpa" . "https://melpa.org/packages/")
+                         ("elpa" . "https://elpa.gnu.org/packages/")))
+
+(package-initialize)
+(unless package-archive-contents
+ (package-refresh-contents))
+
+;; Set up package.el to work with MELPA
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
