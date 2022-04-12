@@ -68,12 +68,14 @@ fpath+=$HOME/.zsh/pure
 
 # Aliases
 alias v="nvim"
+alias tmux="tmux | rm -rf ="
 alias nv="nvim"
 alias tz="trans zh:en"
 alias te="trans -j en:zh"
 alias s="source"
 alias c="clear"
 alias rr="rm -rf"
+alias :Man="man"
 alias g11="g++ -std=c++11"
 alias sshAngoldW="ssh -i "AngoldW.pem" ubuntu@ec2-18-189-28-249.us-east-2.compute.amazonaws.com"
 # For Chrome (The way to open Chrome)
