@@ -1,4 +1,4 @@
-"n Basic Settings
+" Basic Settings
 inoremap jk <Esc>
 noremap H ^
 noremap L $
@@ -28,8 +28,11 @@ set fileencoding=utf-8
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
+set relativenumber
+set number
 
 set background=dark
+
 
 hi! Normal ctermbg=NONE guibg=NONE
 hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
@@ -59,13 +62,17 @@ call plug#begin('~/.vim/plugged')
 " Start
 
 Plug 'shaunsingh/nord.nvim'
-syntax on
 colorscheme nord
+
+syntax on
+
+Plug 'folke/tokyonight.nvim'
+
+
 
 Plug 'Yggdroot/indentLine' " display vertical lines
 let g:indent_guides_guide_size = 1
 let g:indent_guides_start_level = 2 
-
 
 Plug 'vim-airline/vim-airline' "status line
 Plug 'vim-airline/vim-airline-themes'
@@ -94,7 +101,8 @@ nmap <leader>3 <Plug>AirlineSelectTab3
 nmap <leader>4 <Plug>AirlineSelectTab4
 nmap <leader>5 <Plug>AirlineSelectTab5
 nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7 nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>7 <Plug>AirlineSelectTab7 
+nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 
 " 设置切换tab的快捷键 <\> + <-> 切换到前一个 tab
@@ -146,7 +154,7 @@ Plug 'majutsushi/tagbar'
 
 
 Plug 'luochen1990/rainbow'
-let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
+let g:rainbow_active = 0 "set to 0 if you want to enable it later via :RainbowToggle
 let g:rainbow_conf = {
 \   'guifgs': ['darkorange3', 'seagreen3', 'royalblue3', 'firebrick'],
 \   'ctermfgs': ['lightyellow', 'lightcyan','lightblue', 'lightmagenta'],
@@ -218,11 +226,13 @@ let g:fzf_layout = { 'down': '20%' }
 Plug 'octol/vim-cpp-enhanced-highlight'
 
 
+syntax enable
+filetype plugin indent on
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-nnoremap <c-d> :CocDiagnostics<CR> 
 
 let g:coc_start_at_startup=0
+
 " Default disable coc to improve performance
 
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
@@ -402,3 +412,12 @@ Plug 'iamcco/markdown-preview.vim'
 nnoremap <c-m> :MarkdownPreview<CR>
 
 call plug#end()
+
+
+" Example config in VimScript
+
+let g:tokyonight_transparent = "true"
+
+" Load the colorscheme
+colorscheme tokyonight
+nnoremap <c-s> :CocStart<CR> 
