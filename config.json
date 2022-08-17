@@ -1,0 +1,78 @@
+{
+  "log": {
+    "error": "",
+    "loglevel": "info",
+    "access": ""
+  },
+  "inbounds": [
+    {
+      "listen": "127.0.0.1",
+      "protocol": "socks",
+      "settings": {
+        "udp": false,
+        "auth": "noauth"
+      },
+      "port": "1080"
+    },
+    {
+      "listen": "127.0.0.1",
+      "protocol": "http",
+      "settings": {
+        "timeout": 360
+      },
+      "port": "1087"
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "shadowsocks",
+      "streamSettings": {
+        "network": "tcp",
+        "tcpSettings": {
+          "header": {
+            "type": "none"
+          }
+        },
+        "security": "none"
+      },
+      "tag": "proxy",
+      "settings": {
+        "servers": [
+          {
+            "port": 45006,
+            "method": "aes-128-gcm",
+            "password": "r0E6xS",
+            "address": "a114514.ssplife.pw",
+            "level": 0,
+            "email": "",
+            "ota": false
+          }
+        ]
+      }
+    },
+    {
+      "tag": "direct",
+      "protocol": "freedom",
+      "settings": {
+        "domainStrategy": "UseIP",
+        "userLevel": 0
+      }
+    },
+    {
+      "tag": "block",
+      "protocol": "blackhole",
+      "settings": {
+        "response": {
+          "type": "none"
+        }
+      }
+    }
+  ],
+  "dns": {},
+  "routing": {
+    "settings": {
+      "domainStrategy": "AsIs",
+      "rules": []
+    }
+  }
+}
